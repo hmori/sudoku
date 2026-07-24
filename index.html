@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>数独ソルバー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -12,6 +15,12 @@
 </header>
 
 <main class="app-main">
+  <div class="segmented" id="difficulty-tabs" role="tablist" aria-label="難易度">
+    <button type="button" class="segmented-btn" data-difficulty="easy" role="tab">やさしい</button>
+    <button type="button" class="segmented-btn is-active" data-difficulty="medium" role="tab" aria-selected="true">ふつう</button>
+    <button type="button" class="segmented-btn" data-difficulty="hard" role="tab">むずかしい</button>
+  </div>
+
   <div id="board" class="board" role="grid" aria-label="数独盤面"></div>
 
   <div id="numpad" class="numpad" data-numpad aria-label="数字入力パッド">
@@ -31,21 +40,15 @@
 
   <div class="controls">
     <button type="button" id="solve-btn" class="btn btn-primary">解く</button>
-    <button type="button" id="clear-btn" class="btn">クリア</button>
   </div>
 
   <div class="controls">
-    <label for="difficulty-select" class="difficulty-label">難易度</label>
-    <select id="difficulty-select">
-      <option value="easy">易しい</option>
-      <option value="medium" selected>普通</option>
-      <option value="hard">難しい</option>
-    </select>
-    <button type="button" id="new-puzzle-btn" class="btn">New Puzzle</button>
+    <button type="button" id="clear-btn" class="btn btn-secondary">クリア</button>
+    <button type="button" id="new-puzzle-btn" class="btn btn-secondary">新しい問題</button>
   </div>
 
   <div class="controls">
-    <label class="btn btn-secondary photo-input-label" for="photo-input">写真/カメラから入力</label>
+    <label class="btn btn-ghost photo-input-label" for="photo-input">写真/カメラから入力</label>
     <input type="file" id="photo-input" accept="image/*" capture="environment" hidden>
   </div>
 </main>
@@ -69,7 +72,7 @@
     </div>
     <div class="controls">
       <button type="button" id="ocr-confirm-btn" class="btn btn-primary">この内容で反映</button>
-      <button type="button" id="ocr-cancel-btn" class="btn">キャンセル</button>
+      <button type="button" id="ocr-cancel-btn" class="btn btn-secondary">キャンセル</button>
     </div>
   </div>
 </div>

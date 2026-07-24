@@ -60,13 +60,26 @@
       setStatus('');
     });
 
+    // --- Difficulty segmented control ---
+    const difficultyTabs = document.getElementById('difficulty-tabs');
+    let currentDifficulty = 'medium';
+    difficultyTabs.addEventListener('click', (event) => {
+      const tab = event.target.closest('.segmented-btn');
+      if (!tab) return;
+      currentDifficulty = tab.dataset.difficulty;
+      difficultyTabs.querySelectorAll('.segmented-btn').forEach((btn) => {
+        const active = btn === tab;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-selected', String(active));
+      });
+    });
+
     // --- Puzzle generation ---
     document.getElementById('new-puzzle-btn').addEventListener('click', () => {
-      const difficulty = document.getElementById('difficulty-select').value;
       setStatus('生成しています…');
       // Defer so the status message paints before the (synchronous) search runs.
       setTimeout(() => {
-        const { puzzle } = window.SudokuGenerator.generatePuzzle(difficulty);
+        const { puzzle } = window.SudokuGenerator.generatePuzzle(currentDifficulty);
         const givens = puzzle.map((v) => v !== 0);
         mainBoard.setGrid(puzzle, givens);
         state.activeBoard = mainBoard;
