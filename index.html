@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>数独ソルバー</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="app-header">
+  <h1>数独ソルバー</h1>
+</header>
+
+<main class="app-main">
+  <div id="board" class="board" role="grid" aria-label="数独盤面"></div>
+
+  <div id="numpad" class="numpad" data-numpad aria-label="数字入力パッド">
+    <button type="button" class="numpad-key" data-value="1">1</button>
+    <button type="button" class="numpad-key" data-value="2">2</button>
+    <button type="button" class="numpad-key" data-value="3">3</button>
+    <button type="button" class="numpad-key" data-value="4">4</button>
+    <button type="button" class="numpad-key" data-value="5">5</button>
+    <button type="button" class="numpad-key" data-value="6">6</button>
+    <button type="button" class="numpad-key" data-value="7">7</button>
+    <button type="button" class="numpad-key" data-value="8">8</button>
+    <button type="button" class="numpad-key" data-value="9">9</button>
+    <button type="button" class="numpad-key numpad-clear" data-value="0">消去</button>
+  </div>
+
+  <p id="status-message" class="status-message" role="status" aria-live="polite"></p>
+
+  <div class="controls">
+    <button type="button" id="solve-btn" class="btn btn-primary">解く</button>
+    <button type="button" id="clear-btn" class="btn">クリア</button>
+  </div>
+
+  <div class="controls">
+    <label for="difficulty-select" class="difficulty-label">難易度</label>
+    <select id="difficulty-select">
+      <option value="easy">易しい</option>
+      <option value="medium" selected>普通</option>
+      <option value="hard">難しい</option>
+    </select>
+    <button type="button" id="new-puzzle-btn" class="btn">New Puzzle</button>
+  </div>
+
+  <div class="controls">
+    <label class="btn btn-secondary photo-input-label" for="photo-input">写真/カメラから入力</label>
+    <input type="file" id="photo-input" accept="image/*" capture="environment" hidden>
+  </div>
+</main>
+
+<div id="ocr-review-modal" class="modal" hidden>
+  <div class="modal-content">
+    <h2>読み取り結果の確認</h2>
+    <p>誤って認識された数字があれば、盤面をタップして修正してください。</p>
+    <div id="ocr-review-board" class="board board-small"></div>
+    <div class="numpad" data-numpad aria-label="数字入力パッド">
+      <button type="button" class="numpad-key" data-value="1">1</button>
+      <button type="button" class="numpad-key" data-value="2">2</button>
+      <button type="button" class="numpad-key" data-value="3">3</button>
+      <button type="button" class="numpad-key" data-value="4">4</button>
+      <button type="button" class="numpad-key" data-value="5">5</button>
+      <button type="button" class="numpad-key" data-value="6">6</button>
+      <button type="button" class="numpad-key" data-value="7">7</button>
+      <button type="button" class="numpad-key" data-value="8">8</button>
+      <button type="button" class="numpad-key" data-value="9">9</button>
+      <button type="button" class="numpad-key numpad-clear" data-value="0">消去</button>
+    </div>
+    <div class="controls">
+      <button type="button" id="ocr-confirm-btn" class="btn btn-primary">この内容で反映</button>
+      <button type="button" id="ocr-cancel-btn" class="btn">キャンセル</button>
+    </div>
+  </div>
+</div>
+
+<div id="ocr-loading" class="loading-overlay" hidden>
+  <div class="loading-content">
+    <div class="spinner"></div>
+    <p id="ocr-loading-text">画像を解析しています…</p>
+  </div>
+</div>
+
+<script src="js/solver.js"></script>
+<script src="js/generator.js"></script>
+<script src="js/board.js"></script>
+<script src="js/ocr.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
